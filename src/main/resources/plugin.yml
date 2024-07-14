@@ -1,0 +1,7 @@
+name: SlotBarSystem
+version: Umm...
+api-version: 1.21
+main: taewookim.SlotBarPlugin
+
+depend:
+  - PlayerDataManager
