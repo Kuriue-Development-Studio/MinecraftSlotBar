@@ -1,8 +1,11 @@
 package taewookim;
 
 import io.papermc.paper.event.player.PlayerPickItemEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,6 +21,17 @@ public class Events implements Listener {
     @EventHandler
     public void join(PlayerJoinEvent e) {
         SlotBarPlugin.updateSlotBar(e.getPlayer());
+    }
+
+    @EventHandler
+    public void clickInventory(InventoryClickEvent e) {
+        Player p = (Player) e.getWhoClicked();
+        if(!((GameData)PlayerDataManager.getPlayerData(p).getData(PlayerDataType.Game)).isGameing()) {
+            return;
+        }
+        if(e.getClickedInventory().getHolder().equals(e.getWhoClicked())) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler
