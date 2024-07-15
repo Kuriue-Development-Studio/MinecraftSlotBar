@@ -29,6 +29,9 @@ public class Events implements Listener {
         if(!((GameData)PlayerDataManager.getPlayerData(p).getData(PlayerDataType.Game)).isGameing()) {
             return;
         }
+        if(e.getClickedInventory()==null||e.getClickedInventory().getHolder()==null) {
+            return;
+        }
         if(e.getClickedInventory().getHolder().equals(e.getWhoClicked())) {
             e.setCancelled(true);
         }
