@@ -23,7 +23,7 @@ public class Events implements Listener {
     @EventHandler
     public void hold(PlayerItemHeldEvent e) {
         ItemStack i = e.getPlayer().getInventory().getItem(e.getNewSlot());
-        if(!i.hasItemMeta()) {
+        if(i==null||!i.hasItemMeta()) {
             return;
         }
         PersistentDataContainer container = i.getItemMeta().getPersistentDataContainer();

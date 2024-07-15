@@ -59,6 +59,7 @@ dependencies {
     compileOnly "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT"
     compileOnly "taewookim:Java_PlayerDataManager:1.5"
     compileOnly "taewookim:Minecraft_CustomSkill:1.0"
+    compileOnly "taewookim:Java_InventoryMaker:1.0"
 }
 
 test {
