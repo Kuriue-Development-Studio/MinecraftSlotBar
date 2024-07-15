@@ -15,17 +15,7 @@ import util.ItemList;
 public class SlotBarPlugin extends JavaPlugin {
 
     public static void updateSlotBar(Player p) {
-        SlotBarData data = (SlotBarData) PlayerDataManager.getPlayerData(p).getData(PlayerDataType.SlotBar);
-        SlotBarInventory inv = data.getInventory();
-        Inventory pinv = p.getInventory();
-        for(int i = 0; i<9; i++) {
-            ItemStack item = inv.getItem(i);
-            if(item==null||item.getType().equals(Material.AIR)) {
-                pinv.setItem(i, ItemList.x);
-            }else {
-                pinv.setItem(i, item);
-            }
-        }
+        DataManagerPlugin.updateSlotBar(p);
     }
 
     public void onEnable() {

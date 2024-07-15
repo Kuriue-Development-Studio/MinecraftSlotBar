@@ -1,6 +1,7 @@
 package taewookim;
 
 import io.papermc.paper.event.player.PlayerPickItemEvent;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +16,7 @@ import taewookim.playerdata.PlayerDataType;
 import taewookim.playerdata.gamedata.GameData;
 import taewookim.playerdata.inventorydata.InventoryData;
 import taewookim.util.SkillBuilder;
+import util.ItemList;
 
 public class Events implements Listener {
 
@@ -47,6 +49,14 @@ public class Events implements Listener {
         if(container.has(CustomSkillPlugin.itemskill, PersistentDataType.INTEGER)) {
             new SkillBuilder(i).build(e.getPlayer());
             e.setCancelled(true);
+            return;
+        }
+        if(i.getType().equals(Material.BARRIER)) {
+            e.getPlayer().getInventory().setItem(e.getNewSlot(), ItemList.air);
+        }
+        ItemStack before = e.getPlayer().getInventory().getItem(e.getPreviousSlot());
+        if(before==null||before.getType().equals(Material.AIR)) {
+            e.getPlayer().getInventory().setItem(e.getPreviousSlot(), ItemList.x);
         }
     }
 
